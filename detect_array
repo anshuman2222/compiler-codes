@@ -1,0 +1,90 @@
+package compiler;
+import java.io.*;
+class detect_array_adv 
+{
+   public static void main(String args[])
+  {
+      try{
+		
+		FileInputStream fstream = new FileInputStream("textfile.txt");
+		// Get the object of DataInputStream
+                int i=0,j=0;
+		DataInputStream in = new DataInputStream(fstream);
+                BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		String strLine;
+                
+		//Read File Line By Line
+		while ((strLine = br.readLine()) != null) 	{
+                    int flag=0;int fl1=0;
+                    
+                    //StringBuilder str1=new StringBuilder();
+                    StringBuilder str=new StringBuilder();
+			// Print the content on the console
+                    i=0;j++;
+			//System.out.println (strLine);
+                      while(i<strLine.length())  
+                      {  
+                        if(strLine.charAt(i)=='i' && strLine.charAt(i+1)=='n' && strLine.charAt(i+2)=='t'||strLine.charAt(i)=='f' && strLine.charAt(i+1)=='l' && strLine.charAt(i+2)=='o'&& strLine.charAt(i+3)=='a' && strLine.charAt(i+4)=='t'
+                                ||strLine.charAt(i)=='c' && strLine.charAt(i+1)=='h' && strLine.charAt(i+2)=='a'&& strLine.charAt(i+3)=='r'
+                                || strLine.charAt(i)=='d' && strLine.charAt(i+1)=='o' && strLine.charAt(i+2)=='u'&& strLine.charAt(i+3)=='b' && strLine.charAt(i+4)=='l' && strLine.charAt(i+5)=='e'
+                                || strLine.charAt(i)=='l' && strLine.charAt(i+1)=='o' && strLine.charAt(i+2)=='n'&& strLine.charAt(i+3)=='g'
+                                || strLine.charAt(i)=='l' && strLine.charAt(i+1)=='o' && strLine.charAt(i+2)=='n'&& strLine.charAt(i+3)=='g' && strLine.charAt(i+4)==' ' && strLine.charAt(i+5)=='d' && strLine.charAt(i+6)=='o' && strLine.charAt(i+7)=='u'&& strLine.charAt(i+8)=='b' && strLine.charAt(i+9)=='l' && strLine.charAt(i+10)=='e'){
+                           
+                            while(i<strLine.length())
+                            {   
+                                if(strLine.charAt(i)!=' ' && strLine.charAt(i)!='[' && flag==0 ){
+                                   if(Character.isDigit(strLine.charAt(i)) || Character.isSpaceChar(strLine.charAt(i)) ){System.out.println("Invalid: blank space missing at line number "+j); System.exit(0);
+                                   }
+                                    else str.append(strLine.charAt(i));}
+                                else if(strLine.charAt(i)==' '){str.append(strLine.charAt(i));flag=1;}
+                                else if(strLine.charAt(i)!=' ' && strLine.charAt(i)!='[' && flag==1)
+                                {
+                                     if(Character.isDigit(strLine.charAt(i))){System.out.println("Invalid: array name cannot start with digit at line number:"+j); System.exit(0); }
+                                    else str.append(strLine.charAt(i));
+                                    
+                                }
+                                if(strLine.charAt(i)=='['){i--;break;}
+                                i++;
+                            }
+                             while(i<strLine.length())
+                             {
+                                   if(strLine.charAt(i)==']'){System.out.println("Mismathching right parenthesis at line number:"+j);System.exit(0);
+                                   }
+                                    if(strLine.charAt(i)=='[')
+                                    {
+                                        
+                                        //str.append(strLine.charAt(i-1));
+                                        
+                                           i++;
+                                           while(i<strLine.length())
+                                           {
+                                               if(strLine.charAt(i)=='['){System.out.println("Mismatching parenthesis at line number:"+j);System.exit(0);
+                                               }
+                                               if(strLine.charAt(i)==']' && flag!=3)
+                                               {  System.out.println(str+" array declared at line:"+j); flag=3; str.delete(0, str.length()); break; }
+                                               i++;
+                                               if(strLine.charAt(i)==']' && flag==3)
+                                               {  System.out.println("Mismatching right parenthesis at line number:"+j);System.exit(0); }
+                                               
+                                           } 
+                                           if(flag!=3){System.out.println("Right parenthesis missing at line number:"+j);}
+                                    
+                                    }
+                                    //if(f==1)break;
+                             i++;
+                             
+                             }
+                        
+                        
+                        }
+                         i++;   
+		}
+                }
+		//Close the input stream
+		in.close();
+		}catch (Exception e){//Catch exception if any
+			System.err.println("Error: " + e.getMessage());
+		}
+	}
+}
+
