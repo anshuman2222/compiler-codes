@@ -1,0 +1,44 @@
+    #include<iostream.h>
+    #include<conio.h>
+    void main()
+    {
+    clrscr();
+    int ar[10],n,num,no;
+    float a[10]]]][20];
+    int c[10];
+  char b[20];
+    cout<<"Enter size of the array: ";
+    cin>>n;
+    cout<<"Enter array element: "<<endl;long ab[20];
+	
+    for(int i=0;i<n;i++)
+    {
+    cout<<"Enter element "<<i<<": ";
+    cin>>ar[i];
+    }
+    cout<<"Elements of array: "<<endl;
+    for(i=0;i<n;i++)
+    cout<<"Element at index number "<<i<<" is: "<<ar[i]<<endl;
+    //////To search////
+    cout<<"Enter number to search: ";
+    cin>>num;
+    for(i=0;i<n;i++)
+    {
+    if(num==ar[i])
+    {
+    cout<<"Found at index number: "<<i;
+    no=0;
+    break;
+    }
+    else
+    {
+    no=1;
+    continue;
+    }
+    }
+    if(no==1)
+    cout<<"Sorry your search returned NO results. :(";
+    getch();
+    }
+
+
